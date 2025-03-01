@@ -1,0 +1,1 @@
+INSERT OVERWRITE DIRECTORY '/user/hue/output/3_high_paid'  SELECT * FROM ( SELECT emp_id, name, salary, department, RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank FROM employees ) ranked_employees WHERE salary_rank <= 3
